@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using Company.Register.Lib.Model;
 
 namespace MVC_validation_connect_to_1C.Models

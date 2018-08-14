@@ -7,7 +7,6 @@ using Company.Register.Lib;
 using Company.Register.Lib.Model;
 using DataBase_model.Model;
 using MVC_validation_connect_to_1C.Models;
-using Phone = Company.Register.Lib.Model.Phone;
 using User = DataBase_model.Model.User;
 
 namespace MVC_validation_connect_to_1C.Controllers
