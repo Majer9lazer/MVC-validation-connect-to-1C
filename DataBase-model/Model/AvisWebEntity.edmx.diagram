@@ -16,6 +16,8 @@
         <EntityTypeShape EntityType="AvisWeb1Model.User" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="AvisWeb1Model.FK_Address_dic_AddressType" ManuallyRouted="false" />
         <AssociationConnector Association="AvisWeb1Model.FK_Phone_dic_PhoneType" ManuallyRouted="false" />
+        <AssociationConnector Association="AvisWeb1Model.FK_Address_Address" />
+        <AssociationConnector Association="AvisWeb1Model.FK_Phone_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
