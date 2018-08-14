@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Company.Register.Lib;
 using Company.Register.Lib.Model;
 using DataBase_model.Model;
 using MVC_validation_connect_to_1C.Models;
+using Phone = Company.Register.Lib.Model.Phone;
 using User = DataBase_model.Model.User;
 
 namespace MVC_validation_connect_to_1C.Controllers
@@ -54,10 +52,12 @@ namespace MVC_validation_connect_to_1C.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,Login,Password,RePassword,Email,EmailElInvoice,IsLegalEntity,Bin,Kbe,CertSeries,CertNumber,CertDateIssue,Status,CreateDate,UpdateDate,NameOrganization,User1CGuid,Surname,Name,Patronymic,AddressLegal")] LocaUser user)
+        public ActionResult Create([Bind(Include = "UserId,Login,Bik,Password,RePassword,Email,EmailElInvoice,IsLegalEntity,ContactNumbers,Bin,Kbe,CertSeries,CertNumber,CertDateIssue,Status,NameOrganization,User1CGuid,Surname,Name,Patronymic,AddressLegal,PhoneNumber")] LocaUser user)
         {
             if (ModelState.IsValid)
             {
+                user.CreateDate = DateTime.Now;
+                user.UpdateDate = DateTime.Now;
                 try
                 {
                     if (db.Users.Any(f => f.Login == user.Login))
@@ -65,40 +65,18 @@ namespace MVC_validation_connect_to_1C.Controllers
                         ViewData["ErrorMessage"] = "Данный пользователь уже есть.";
                         return View(user);
                     }
-                    else
-                    {
-                        if (user.IsLegalEntity == 2)
-                        {
-                            if (string.IsNullOrEmpty(user.NameOrganization))
-                            {
-                                ViewData["ErrorMessage"] = "Поле NameOrganization обязательно к заполнению.";
-                                return View(user);
-                            }
-                            else
-                            {
-                                user.Surname = null;
-                                user.NameOrganization = null;
-                                user.Patronymic = null;
-                                if (!string.IsNullOrEmpty(user.AddressLegal.House) ||
-                                    !string.IsNullOrEmpty(user.AddressLegal.Street))
-                                {
-                                    user.AddressPhysical.House = user.AddressLegal.House;
-                                    user.AddressPhysical.Street = user.AddressLegal.Street;
-                                    UserAccount a = (UserAccount)user;
-                                    a.BankDetails[0]= new BankDetail(){Bik = "", CurrencyId= 1, AccountNumber = ""};
-                                    a.ContactNumbers[0] = new Company.Register.Lib.Model.Phone(){PhoneCode = "7", PhoneNumber = "777 77 77", PhoneTypeId = 1, СountryСode = "727"};
-                                    
-                                    ViewData["ErrorMessage"] = CompanyRegisterService.RegisterContractors(a);
-                                    return View(user);
-                                }
-                                else
-                                {
-                                    ViewData["ErrorMessage"] = "Поле дом и улица должны быть заполненными";
-                                    return View(user);
-                                }
-                            }
-                        }
-                    }
+
+                    user.AddressPhysical.House = user.AddressLegal.House;
+                    user.AddressPhysical.Street = user.AddressLegal.Street;
+                    UserAccount a = (UserAccount)user;
+                    a.BankDetails[0] = new BankDetail() { Bik = "", CurrencyId = 1, AccountNumber = "" };
+                    
+                    user.PhoneNumber.PhoneCode = "7";
+                    user.PhoneNumber.PhoneTypeId = 1;
+                    user.PhoneNumber.СountryСode = "727";
+                    a.ContactNumbers[0] = user.PhoneNumber;
+                    ViewData["ErrorMessage"] = CompanyRegisterService.RegisterContractors(a);
+                    return View(user);
 
 
                 }
@@ -110,6 +88,7 @@ namespace MVC_validation_connect_to_1C.Controllers
 
                 return RedirectToAction("Index");
             }
+
 
             return View(user);
         }

@@ -7,6 +7,87 @@ using Company.Register.Lib.Model;
 
 namespace MVC_validation_connect_to_1C.Models
 {
+    public class IsLegalAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+
+            if (value is LocaUser user)
+            {
+
+                switch (user.IsLegalEntity)
+                {
+                    case 1:
+                        {
+                            if (!string.IsNullOrEmpty(user.NameOrganization))
+                            {
+
+                                user.Surname = null;
+                                user.Name = null;
+                                user.Patronymic = null;
+                                if (!string.IsNullOrEmpty(user.AddressLegal.House) ||
+                                    !string.IsNullOrEmpty(user.AddressLegal.Street))
+                                {
+                                    return true;
+
+                                }
+                                else
+                                {
+                                    ErrorMessage = "Дом и улица должны быть заполнены";
+                                    return false;
+                                }
+
+                            }
+                            else
+                            {
+                                ErrorMessage = "Поле NameOrganization обязательно к заполнению.";
+                                return false;
+                            }
+                        }
+                    case 2:
+                        {
+                            if (!string.IsNullOrEmpty(user.AddressLegal.House) ||
+                                !string.IsNullOrEmpty(user.AddressLegal.Street))
+                            {
+                                if (!string.IsNullOrEmpty(user.Surname))
+                                {
+                                    if (!string.IsNullOrEmpty(user.Name))
+                                    {
+                                        if (!string.IsNullOrEmpty(user.Patronymic))
+                                        {
+                                            return true;
+                                        }
+                                        ErrorMessage = "Поле Patronymics является обязательным для заполнения";
+                                        return false;
+                                    }
+
+                                    ErrorMessage = "Поле Name является обязательным для заполнения";
+                                    return false;
+                                }
+
+                                ErrorMessage = "Поле Surname является обязательным для заполнения";
+                                return false;
+
+                            }
+
+                            ErrorMessage = "Поле дом и улица должны быть заполненными";
+                            return false;
+                        }
+                    default:
+                        {
+                            ErrorMessage = "В поле лиц вы должны ввести 1 или 2. Другого не дано.";
+                            return false;
+                        }
+                }
+            }
+            else
+            {
+                ErrorMessage = "Пришел не тот вид объекта";
+                return false;
+            }
+        }
+    }
+    [IsLegal]
     public class LocaUser
     {
         public LocaUser()
@@ -15,9 +96,12 @@ namespace MVC_validation_connect_to_1C.Models
             AddressLegal.CityId = 3;
             AddressPhysical.ContryId = 1;
             AddressPhysical.CityId = 3;
-            Phone p = new Phone();
-            
+
+
         }
+
+        public Phone PhoneNumber { get; set; }
+
         public int UserId { get; set; }
         [Required]
         public string Login { get; set; }
@@ -33,13 +117,12 @@ namespace MVC_validation_connect_to_1C.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         public string EmailElInvoice { get; set; }
-
-        [Range(1, 2, ErrorMessage = "7.	Поле «IsLegalEntity» имеет всего 2 значения ")]
         public int IsLegalEntity { get; set; }
         [Required]
         [StringLength(12, ErrorMessage = "БИН/ИИН Должен быть = 12")]
         public string Bin { get; set; }
-        [StringLength(2, ErrorMessage = "5.	Поле «Kbe», должно быть всегда 2-х значным числом")]
+
+        [StringLength(2, ErrorMessage = "Поле «Kbe», должно быть всегда 2-х значным числом")]
         public string Kbe { get; set; }
 
         public string CertSeries { get; set; }
@@ -51,7 +134,6 @@ namespace MVC_validation_connect_to_1C.Models
         public int Status { get; set; }
 
         public DateTime CreateDate { get; set; }
-
         public DateTime? UpdateDate { get; set; }
 
         public string NameOrganization { get; set; }
@@ -79,6 +161,8 @@ namespace MVC_validation_connect_to_1C.Models
         public BankDetail[] BankDetails { get; set; } = new BankDetail[1];
 
         public bool RememberMe { get; set; } = false;
+        [Required]
+        public string Bik { get; set; }
 
         public static explicit operator UserAccount(LocaUser obj)
         {
@@ -109,7 +193,7 @@ namespace MVC_validation_connect_to_1C.Models
                 BankDetails = obj.BankDetails,
                 AddressLegal = obj.AddressLegal,
                 RememberMe = obj.RememberMe,
-                Address = new List<Address>() { obj.AddressLegal,obj.AddressPhysical}
+                Address = new List<Address>() { obj.AddressLegal, obj.AddressPhysical }
             };
 
             return userAccount;
