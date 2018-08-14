@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b1cdac07ea9f41088f9a0d76551f9898" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="AvisWeb1Model.Address" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AvisWeb1Model.dic_AddressType" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AvisWeb1Model.dic_Bank" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AvisWeb1Model.dic_City" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AvisWeb1Model.dic_Country" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AvisWeb1Model.dic_Currency" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AvisWeb1Model.dic_PhoneType" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AvisWeb1Model.Phone" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AvisWeb1Model.User" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="AvisWeb1Model.FK_Address_dic_AddressType" ManuallyRouted="false" />
+        <AssociationConnector Association="AvisWeb1Model.FK_Phone_dic_PhoneType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

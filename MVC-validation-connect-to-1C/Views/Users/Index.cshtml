@@ -1,0 +1,135 @@
+﻿@model IEnumerable<DataBase_model.Model.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailElInvoice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsLegalEntity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kbe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CertSeries)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CertNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CertDateIssue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameOrganization)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User1CGuid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patronymic)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailElInvoice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsLegalEntity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kbe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CertSeries)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CertNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CertDateIssue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameOrganization)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User1CGuid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patronymic)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+        </td>
+    </tr>
+}
+
+</table>

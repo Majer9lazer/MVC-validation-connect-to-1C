@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище AvisWeb1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressTypeId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ContryId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Street" Type="nvarchar" MaxLength="550" />
+          <Property Name="House" Type="nvarchar" MaxLength="50" />
+          <Property Name="Housing" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApartmentOffice" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="dic_AddressType">
+          <Key>
+            <PropertyRef Name="AddressTypeId" />
+          </Key>
+          <Property Name="AddressTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="dic_Bank">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2500" />
+          <Property Name="Bik" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChangeDate" Type="datetime" />
+          <Property Name="GuidBank" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="dic_City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="nvarchar" MaxLength="36" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name_En" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name_Kk" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name_Uz" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name_Kg" Type="nvarchar" MaxLength="250" />
+          <Property Name="GUIDCountry" Type="nvarchar" MaxLength="36" />
+          <Property Name="IsThereBranch" Type="bit" />
+          <Property Name="ChangeDate" Type="datetime" />
+          <Property Name="CityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="dic_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="nvarchar" MaxLength="36" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name_En" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name_Kk" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name_Uz" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name_Kg" Type="nvarchar" MaxLength="250" />
+          <Property Name="ChangeDate" Type="datetime" />
+          <Property Name="CodePhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="dic_Currency">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="GUID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChangeDate" Type="datetime" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="dic_PhoneType">
+          <Key>
+            <PropertyRef Name="PhoneTypeId" />
+          </Key>
+          <Property Name="PhoneTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="PhoneId" />
+          </Key>
+          <Property Name="PhoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="PhoneTypeId" Type="int" />
+          <Property Name="СountryСode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="150" />
+          <Property Name="AddNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="250" />
+          <Property Name="Password" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="EmailElInvoice" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsLegalEntity" Type="int" />
+          <Property Name="Bin" Type="nvarchar" MaxLength="250" />
+          <Property Name="Kbe" Type="nvarchar" MaxLength="250" />
+          <Property Name="CertSeries" Type="nvarchar" MaxLength="250" />
+          <Property Name="CertNumber" Type="nvarchar" MaxLength="250" />
+          <Property Name="CertDateIssue" Type="date" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="NameOrganization" Type="nvarchar" MaxLength="2000" />
+          <Property Name="User1CGuid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_Address_dic_AddressType">
+          <End Role="dic_AddressType" Type="Self.dic_AddressType" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dic_AddressType">
+              <PropertyRef Name="AddressTypeId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="AddressTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_dic_PhoneType">
+          <End Role="dic_PhoneType" Type="Self.dic_PhoneType" Multiplicity="0..1" />
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dic_PhoneType">
+              <PropertyRef Name="PhoneTypeId" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PhoneTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище AvisWeb1ModelContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dic_AddressType" EntityType="Self.dic_AddressType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dic_Bank" EntityType="Self.dic_Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dic_City" EntityType="Self.dic_City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dic_Country" EntityType="Self.dic_Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dic_Currency" EntityType="Self.dic_Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dic_PhoneType" EntityType="Self.dic_PhoneType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Address_dic_AddressType" Association="Self.FK_Address_dic_AddressType">
+            <End Role="dic_AddressType" EntitySet="dic_AddressType" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_dic_PhoneType" Association="Self.FK_Phone_dic_PhoneType">
+            <End Role="dic_PhoneType" EntitySet="dic_PhoneType" />
+            <End Role="Phone" EntitySet="Phone" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AvisWeb1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressTypeId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ContryId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="House" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Housing" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApartmentOffice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="dic_AddressType" Relationship="Self.FK_Address_dic_AddressType" FromRole="Address" ToRole="dic_AddressType" />
+        </EntityType>
+        <EntityType Name="dic_AddressType">
+          <Key>
+            <PropertyRef Name="AddressTypeId" />
+          </Key>
+          <Property Name="AddressTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_dic_AddressType" FromRole="dic_AddressType" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="dic_Bank">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="Bik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+          <Property Name="GuidBank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="dic_City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name_En" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Kk" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Uz" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Kg" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="GUIDCountry" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="IsThereBranch" Type="Boolean" />
+          <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+          <Property Name="CityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="dic_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name_En" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Kk" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Uz" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Kg" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+          <Property Name="CodePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="dic_Currency">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="dic_PhoneType">
+          <Key>
+            <PropertyRef Name="PhoneTypeId" />
+          </Key>
+          <Property Name="PhoneTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Phones" Relationship="Self.FK_Phone_dic_PhoneType" FromRole="dic_PhoneType" ToRole="Phone" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="PhoneId" />
+          </Key>
+          <Property Name="PhoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="PhoneTypeId" Type="Int32" />
+          <Property Name="СountryСode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AddNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="dic_PhoneType" Relationship="Self.FK_Phone_dic_PhoneType" FromRole="Phone" ToRole="dic_PhoneType" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EmailElInvoice" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsLegalEntity" Type="Int32" />
+          <Property Name="Bin" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Kbe" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CertSeries" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CertNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CertDateIssue" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="NameOrganization" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="User1CGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Address_dic_AddressType">
+          <End Role="dic_AddressType" Type="Self.dic_AddressType" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dic_AddressType">
+              <PropertyRef Name="AddressTypeId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="AddressTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_dic_PhoneType">
+          <End Role="dic_PhoneType" Type="Self.dic_PhoneType" Multiplicity="0..1" />
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dic_PhoneType">
+              <PropertyRef Name="PhoneTypeId" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PhoneTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AvisWeb1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="dic_AddressType" EntityType="Self.dic_AddressType" />
+          <EntitySet Name="dic_Bank" EntityType="Self.dic_Bank" />
+          <EntitySet Name="dic_City" EntityType="Self.dic_City" />
+          <EntitySet Name="dic_Country" EntityType="Self.dic_Country" />
+          <EntitySet Name="dic_Currency" EntityType="Self.dic_Currency" />
+          <EntitySet Name="dic_PhoneType" EntityType="Self.dic_PhoneType" />
+          <EntitySet Name="Phones" EntityType="Self.Phone" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Address_dic_AddressType" Association="Self.FK_Address_dic_AddressType">
+            <End Role="dic_AddressType" EntitySet="dic_AddressType" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_dic_PhoneType" Association="Self.FK_Phone_dic_PhoneType">
+            <End Role="dic_PhoneType" EntitySet="dic_PhoneType" />
+            <End Role="Phone" EntitySet="Phones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AvisWeb1ModelContainer" CdmEntityContainer="AvisWeb1Entities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="AvisWeb1Model.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="AddressTypeId" ColumnName="AddressTypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ContryId" ColumnName="ContryId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="House" ColumnName="House" />
+                <ScalarProperty Name="Housing" ColumnName="Housing" />
+                <ScalarProperty Name="ApartmentOffice" ColumnName="ApartmentOffice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dic_AddressType">
+            <EntityTypeMapping TypeName="AvisWeb1Model.dic_AddressType">
+              <MappingFragment StoreEntitySet="dic_AddressType">
+                <ScalarProperty Name="AddressTypeId" ColumnName="AddressTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dic_Bank">
+            <EntityTypeMapping TypeName="AvisWeb1Model.dic_Bank">
+              <MappingFragment StoreEntitySet="dic_Bank">
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Bik" ColumnName="Bik" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="GuidBank" ColumnName="GuidBank" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dic_City">
+            <EntityTypeMapping TypeName="AvisWeb1Model.dic_City">
+              <MappingFragment StoreEntitySet="dic_City">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Name_En" ColumnName="Name_En" />
+                <ScalarProperty Name="Name_Kk" ColumnName="Name_Kk" />
+                <ScalarProperty Name="Name_Uz" ColumnName="Name_Uz" />
+                <ScalarProperty Name="Name_Kg" ColumnName="Name_Kg" />
+                <ScalarProperty Name="GUIDCountry" ColumnName="GUIDCountry" />
+                <ScalarProperty Name="IsThereBranch" ColumnName="IsThereBranch" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dic_Country">
+            <EntityTypeMapping TypeName="AvisWeb1Model.dic_Country">
+              <MappingFragment StoreEntitySet="dic_Country">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Name_En" ColumnName="Name_En" />
+                <ScalarProperty Name="Name_Kk" ColumnName="Name_Kk" />
+                <ScalarProperty Name="Name_Uz" ColumnName="Name_Uz" />
+                <ScalarProperty Name="Name_Kg" ColumnName="Name_Kg" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="CodePhone" ColumnName="CodePhone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dic_Currency">
+            <EntityTypeMapping TypeName="AvisWeb1Model.dic_Currency">
+              <MappingFragment StoreEntitySet="dic_Currency">
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dic_PhoneType">
+            <EntityTypeMapping TypeName="AvisWeb1Model.dic_PhoneType">
+              <MappingFragment StoreEntitySet="dic_PhoneType">
+                <ScalarProperty Name="PhoneTypeId" ColumnName="PhoneTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phones">
+            <EntityTypeMapping TypeName="AvisWeb1Model.Phone">
+              <MappingFragment StoreEntitySet="Phone">
+                <ScalarProperty Name="PhoneId" ColumnName="PhoneId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PhoneTypeId" ColumnName="PhoneTypeId" />
+                <ScalarProperty Name="СountryСode" ColumnName="СountryСode" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AddNumber" ColumnName="AddNumber" />
+                <ScalarProperty Name="PhoneCode" ColumnName="PhoneCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AvisWeb1Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailElInvoice" ColumnName="EmailElInvoice" />
+                <ScalarProperty Name="IsLegalEntity" ColumnName="IsLegalEntity" />
+                <ScalarProperty Name="Bin" ColumnName="Bin" />
+                <ScalarProperty Name="Kbe" ColumnName="Kbe" />
+                <ScalarProperty Name="CertSeries" ColumnName="CertSeries" />
+                <ScalarProperty Name="CertNumber" ColumnName="CertNumber" />
+                <ScalarProperty Name="CertDateIssue" ColumnName="CertDateIssue" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="NameOrganization" ColumnName="NameOrganization" />
+                <ScalarProperty Name="User1CGuid" ColumnName="User1CGuid" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

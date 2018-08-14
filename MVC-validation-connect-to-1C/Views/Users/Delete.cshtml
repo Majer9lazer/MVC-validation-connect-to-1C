@@ -1,0 +1,168 @@
+﻿@model DataBase_model.Model.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailElInvoice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailElInvoice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsLegalEntity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsLegalEntity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kbe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kbe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CertSeries)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CertSeries)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CertNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CertNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CertDateIssue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CertDateIssue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOrganization)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOrganization)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User1CGuid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1CGuid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patronymic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
